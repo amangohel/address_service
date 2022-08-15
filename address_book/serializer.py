@@ -15,7 +15,7 @@ class AddressBookSerializer(serializers.Serializer):
     id = serializers.UUIDField(required=False)
     country = serializers.CharField(max_length=2, min_length=2)
     address_line_one = serializers.CharField(max_length=50)
-    address_line_two = serializers.CharField(allow_blank=True, max_length=50)
+    address_line_two = serializers.CharField(allow_blank=True, max_length=50, allow_null=True)
     city = serializers.CharField(max_length=50)
     zip_code = serializers.CharField(max_length=10)
 
@@ -54,8 +54,9 @@ class AddressBookSerializer(serializers.Serializer):
             raise serializers.ValidationError("Zip code can be up to 10 characters long")
         if len(data["address_line_one"]) > 50:
             raise serializers.ValidationError("Address line one is too long")
-        if len(data["address_line_two"]) > 50:
-            raise serializers.ValidationError("Address line two is too long")
+        if data["address_line_two"]:
+            if len(data["address_line_two"]) > 50:
+                raise serializers.ValidationError("Address line two is too long")
         if len(data["city"]) > 50:
             raise serializers.ValidationError("City is too long")
 
