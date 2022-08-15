@@ -3,7 +3,8 @@
 ## How to run the app
 
 - Clone the repository
-- Start the virtual environment `source bin/activate/venv`
+- Generate a virtual env `python3 -m venv venv` (https://docs.python.org/3/library/venv.html)
+- Start the virtual environment `source venv/bin/activate`
 - and run `pip install -r requirements.txt`
 
 Once requirements are installed then proceed to run the following:
@@ -14,9 +15,10 @@ Once requirements are installed then proceed to run the following:
     - Creates a test user with a token you can use to query the api
     - You can use the email from this test user as well as password “password” on the login/logout endpoints
     - You can use this token in your rest client to test endpoints (postman, insomnia etc)
+- `python manage.py runserver`
 
 ## How to view API docs
-
+- Make a note of the token from the step above
 - navigate to [http://localhost:8000/docs/](http://localhost:8000/docs/)
 - Click on Authorize
 - Copy and paste your token into the field as "Token --value-of-token--"
@@ -59,6 +61,7 @@ pytest tests/<name_of_app>/<test_file_name>.py OR pytest
 - I named the django migration relavant to addressbook rather than auto generating it
 - One assumption I made on authentication was that a user already exists with an email and a password, and that at this point we're generating a token for them to use this API. I could have made a separate endpoint for registering a user but was not sure if it was part of the bonus tasks.
 - That tokens need to expire after a day and are regenerated on reauth
+- I've used SQLLite for the exercise, but would consider using postgresql if this was a production env
 
 ## Questions
 
