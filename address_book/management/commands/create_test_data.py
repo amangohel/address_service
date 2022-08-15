@@ -30,7 +30,7 @@ class Command(BaseCommand):
             for _ in range(0, count):
                 AddressBook.objects.create(
                     user=user,
-                    country=fake.country(),
+                    country="GB",
                     address_line_one=fake.address(),
                     city=fake.city(),
                     zip_code=fake.postcode(),
